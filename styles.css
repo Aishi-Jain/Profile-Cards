@@ -7,7 +7,24 @@
   box-sizing: border-box;
 }
 
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* || UTILITY CLASSES */
+
+.nowrap {
+    white-space: nowrap;
+}
+
 /* || GENERAL STYLES */
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font: 1.5rem "Nunito", sans-serif; 
     color: black; 
@@ -18,17 +35,11 @@ body {
     flex-direction: column;
 }
 
-header, nav, main, footer {
-    display: grid;
-    place-content: center;
-    grid-template-columns: 100%;
-    text-align: center;
-}
-
 header, footer {
     position: sticky;
     background-color: #1E293B;
     color: whitesmoke;
+    text-align: center;
 }
 
 header {
@@ -40,55 +51,140 @@ nav {
     color: black;
     padding: 0.5rem;
     border-bottom: 2px solid black;
+    font-weight: bolder;
+    display: flex;
+    justify-content: space-evenly;
 }
+
+nav a, nav a:visited {
+    color: black;
+}
+
+nav a:hover, nav a:focus {
+    color: hsla(45, 49%, 17%, 0.726);
+}
+
 main {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
 }
 
 footer {
     bottom: 0;
 }
 
+/* || PROFILE CARD */
+
+.card {
+    scroll-margin-top: 6rem;
+    width: min(100%, 350px);
+    background-color: #949780;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card figure {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.card img {
+    border: 5px double black;
+    border-radius: 50%;
+}
+
+.card figcaption {
+    font-weight: bolder;
+    font-size: 2rem;
+    margin: 1rem;
+    text-align: center;
+}
+
+.card p {
+    text-align: center;
+}
+
 /* ||SMALL */
 @media screen and (min-width: 576px) { 
-    body {
-        background-color: rgb(5, 44, 5);
-        background-image: radial-gradient(whitesmoke, rgb(5, 44, 5));
+    main {
+        justify-content: center;
+        flex-flow: row wrap;
+        padding: 1rem;
+    }
+
+    .card {
+        width: (100%, 400px);
     }
 }
 
 /* ||MEDIUM */
 @media screen and (min-width: 768px) { 
-    body {
-        background-color: rgb(44, 38, 5);
-        background-image: radial-gradient(whitesmoke, rgb(44, 38, 5));
+    nav {
+        display: none;
+    }
+
+    .card {
+        width: min(100%, 325px);
+    }
+
+    .card figure {
+        flex-flow: column-reverse;
+    }
+
+    .card figcaption {
+        margin: 0.1em 0;
+    }
+
+    .card p {
+        margin-top: 1rem;
     }
 }
 
 /* ||LARGE */
 @media screen and (min-width: 992px) { 
-    body {
-        background-color: rgb(31, 6, 39);
-        background-image: radial-gradient(whitesmoke, rgb(31, 6, 39));
+    .card {
+        width: min(100%, 400px);
     }
 }
 
 /* ||XL */
 @media screen and (min-width: 1200px) { 
-    body {
-        background-color: rgb(53, 4, 15);
-        background-image: radial-gradient(whitesmoke, rgb(53, 14, 15));
+    .card {
+        width: min(calc(33% - 1rem, 500px))
     }
 }
 
 /* ||MOBILE DEVICE LANDSCAPE */
 @media screen and (max-height: 425px) and (min-aspect-ratio: 7/4) { 
-    body {
-        background-color: rgb(4, 50, 53);
-        background-image: radial-gradient(whitesmoke, rgb(4, 50, 53));
+    h1 {
+        font-size: 1.5rem;
+      }
+    
+      nav {
+        display: none;
+      }
+    
+      main {
+        flex-flow: row nowrap;
+        justify-content: space-evenly;
+        align-items: stretch;
+      }
+    
+      .card {
+        /* Remove calc() - min() supports math! */
+        width: min(33% - 0.25rem, 200px);
+      }
+    
+      .card figcaption,
+      .card p {
+        font-size: 1.25rem;
+      }
     }
-}
-
-h1, h2 {
-    font-size: 1.5rem;
-}
